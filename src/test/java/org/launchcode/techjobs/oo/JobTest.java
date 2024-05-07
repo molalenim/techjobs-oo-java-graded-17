@@ -24,7 +24,12 @@ public class JobTest {
         Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         // Assert
-        assertTrue(job instanceof Job);
+        assertTrue(job instanceof Job); // Asserts that job is an instance of Job class
+        assertTrue(job.getEmployer() instanceof Employer); // Asserts that employer is an instance of Employer class
+        assertTrue(job.getLocation() instanceof Location); // Asserts that location is an instance of Location class
+        assertTrue(job.getPositionType() instanceof PositionType); // Asserts that positionType is an instance of PositionType class
+        assertTrue(job.getCoreCompetency() instanceof CoreCompetency); // Asserts that coreCompetency is an instance of CoreCompetency class
+
         assertEquals("Product tester", job.getName());
         assertEquals("ACME", job.getEmployer().getValue());
         assertEquals("Desert", job.getLocation().getValue());
