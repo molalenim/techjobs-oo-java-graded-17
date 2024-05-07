@@ -51,4 +51,73 @@ public class JobTest {
     }
 
 
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        // Arrange
+        String lineSep = System.lineSeparator();
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        //Act
+        String jobString = job.toString();
+
+        //Assert
+        assertTrue(jobString.startsWith(lineSep));
+        assertTrue(jobString.endsWith(lineSep));
+
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        // Arrange
+        Job job = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        // Act
+        String jobString = job.toString();
+
+        // Assert
+        assertTrue(jobString.contains("ID: " + job.getId()));
+        assertTrue(jobString.contains("Name: " + job.getName()));
+        assertTrue(jobString.contains("Employer: " + job.getEmployer()));
+        assertTrue(jobString.contains("Location: " + job.getLocation()));
+        assertTrue(jobString.contains("Position Type: " + job.getPositionType()));
+        assertTrue(jobString.contains("Core Competency: " + job.getCoreCompetency()));
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+        // Arrange
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+
+        // Act
+        String jobString = job.toString();
+
+        // Assert
+        assertTrue(jobString.contains("ID: "));
+        assertTrue(jobString.contains("Name: Data not available"));
+        assertTrue(jobString.contains("Employer: Data not available" ));
+        assertTrue(jobString.contains("Location: Data not available"));
+        assertTrue(jobString.contains("Position Type: Data not available"));
+        assertTrue(jobString.contains("Core Competency: Data not available"));
+    }
+
+    @Test
+    public void testToStringHandlesIdOnly() {
+        // Arrange
+        Job job = new Job("", new Employer(""), new Location(""), new PositionType(""), new CoreCompetency(""));
+        job.setName(null);
+        job.setEmployer(null);
+        job.setLocation(null);
+        job.setPositionType(null);
+        job.setCoreCompetency(null);
+
+        // Act
+        String jobString = job.toString();
+
+        // Assert
+        assertEquals("OOPS! This job does not seem to exist.", jobString);
+    }
+
 }
+
+

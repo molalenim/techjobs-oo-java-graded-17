@@ -95,4 +95,22 @@ public class Job {
     public int getId() {
         return id;
     }
+
+    //TODO to string
+
+
+    @Override
+    public String toString() {
+        if (name == null && employer == null && location == null && positionType == null && coreCompetency == null) {
+            return "OOPS! This job does not seem to exist.";
+        }
+
+        return System.lineSeparator() +
+                "ID: " + id + System.lineSeparator() +
+                "Name: " + (name == null || name.isEmpty() ? "Data not available" : name) + System.lineSeparator() +
+                "Employer: " + (employer == null || employer.getValue().isEmpty() ? "Data not available" : employer.getValue()) + System.lineSeparator() +
+                "Location: " + (location == null || location.getValue().isEmpty() ? "Data not available" : location.getValue()) + System.lineSeparator() +
+                "Position Type: " + (positionType == null || positionType.getValue().isEmpty() ? "Data not available" : positionType.getValue()) + System.lineSeparator() +
+                "Core Competency: " + (coreCompetency == null || coreCompetency.getValue().isEmpty() ? "Data not available" : coreCompetency.getValue()) + System.lineSeparator();
+    }
 }
